@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Login</title><meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+ 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+	<link rel="stylesheet" href="{% static 'style_login.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="input-container">
+			<form action="" method="POST" class="formulario">
+				<h1>
+				Registro
+				</h1>
+				{% csrf_token %}
+				
+				{{ form }}
+
+				<input type="submit" name="Login" class="button">
+				<p>Bienvenido a la aplicación</p>
+         		<p>Si ya posee una cuenta <a class="link" href="{% url 'login' %}">Iniciar Sesión</a></p>
+         		<p>Regresar a <a class = link href="{% url 'home' %}">Inicio</a></p>
+			</form>	
+		</div>
+	</div>
+</body>
+</html>

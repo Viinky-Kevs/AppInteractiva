@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title> VariabilidadCambio</title>
+  <link rel="stylesheet" href="{% static 'style_map.css' %}">
+  <!-- Boxicons.com Iconos (utilizar font)-->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {{ map.header.render|safe }}
+
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxs-meteor'></i>
+        <div class="logo_name">Interactive</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Buscar...">
+         <span class="tooltip">Buscar</span>
+      </li>
+      <li>
+        <a href="{% url 'home' %}">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Inicio</span>
+        </a>
+         <span class="tooltip">Inicio</span>
+      </li>
+
+      {% if user.is_authenticated %}
+      <li>
+       <a href="{% url 'logout' %}">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">{{ user.username }}</span>
+       </a>
+       <span class="tooltip">{{ user.username }}</span>
+     </li>
+     <li>
+       <a href="{% url 'map' %}">
+         <i class='bx bx-map'></i>
+         <span class="links_name">Mapa</span>
+       </a>
+       <span class="tooltip">Mapa</span>
+     </li>
+     {% else %}
+     <li>
+       <a href="{% url 'login' %}">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">Iniciar Sesión</span>
+       </a>
+       <span class="tooltip">Iniciar Sesión</span>
+     </li>
+     {% endif %}
+
+     <li>
+       <a href="#">
+         <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">Análisis</span>
+       </a>
+       <span class="tooltip">Análisis</span>
+     </li>
+     <li>
+       <a href="{% url 'upload' %}">
+         <i class='bx bx-folder' ></i>
+         <span class="links_name">Archivos</span>
+       </a>
+       <span class="tooltip">Archivos</span>
+     </li>
+     <li>
+       <a href="{% url 'group' %}">
+         <i class='bx bxs-group' ></i>
+         <span class="links_name">Grupo</span>
+       </a>
+       <span class="tooltip">Grupo</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Ajustes</span>
+       </a>
+       <span class="tooltip">Ajustes</span>
+     </li>
+     <li class="profile">
+         <div class="profile-details">
+           <img src="{% static 'unal.png' %}" alt="profileImg">
+           <div class="name_job">
+             <div class="name">Joaquin & Efren</div>
+             <div class="job">Grupo de investigación</div>
+           </div>
+         </div>
+         <i class='bx bx-log-out' id="log_out" ></i>
+     </li>
+    </ul>
+  </div>
+  
+  <section class="map-section">
+    <div class="text">
+      Mapa Interactivo
+    </div>
+    <div class="interactivo">
+      {{ map.html.render|safe }} 
+    </div>
+
+  </section>
+  
+    <!--{{ map.html.render|safe }} -->
+  
+    <script>
+
+      {{ map.script.render|safe }}
+      
+      let sidebar = document.querySelector(".sidebar");
+      let closeBtn = document.querySelector("#btn");
+      let searchBtn = document.querySelector(".bx-search");
+
+      closeBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("open");
+        menuBtnChange();
+      });
+
+      searchBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("open");
+        menuBtnChange();
+      });
+
+      function menuBtnChange() {
+        if(sidebar.classList.contains("open")){
+          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        }else {
+          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");
+         }
+      }
+      
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Group</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'style_group.css' %}">
+	<!-- Boxicons.com Iconos (utilizar font)-->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxs-meteor'></i>
+        <div class="logo_name">Interactive</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Buscar...">
+         <span class="tooltip">Buscar</span>
+      </li>
+      <li>
+        <a href="{% url 'home' %}">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Inicio</span>
+        </a>
+         <span class="tooltip">Inicio</span>
+      </li>
+
+      {% if user.is_authenticated %}
+      <li>
+       <a href="{% url 'logout' %}">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">{{ user.username }}</span>
+       </a>
+       <span class="tooltip">{{ user.username }}</span>
+     </li>
+     <li>
+       <a href="{% url 'map' %}">
+         <i class='bx bx-map'></i>
+         <span class="links_name">Mapa</span>
+       </a>
+       <span class="tooltip">Mapa</span>
+     </li>
+     {% else %}
+     <li>
+       <a href="{% url 'login' %}">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">Iniciar Sesión</span>
+       </a>
+       <span class="tooltip">Iniciar Sesión</span>
+     </li>
+     {% endif %}
+
+     <li>
+       <a href="#">
+         <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">Análisis</span>
+       </a>
+       <span class="tooltip">Análisis</span>
+     </li>
+     <li>
+       <a href="{% url 'upload' %}">
+         <i class='bx bx-folder' ></i>
+         <span class="links_name">Archivos</span>
+       </a>
+       <span class="tooltip">Archivos</span>
+     </li>
+     <li>
+       <a href="{% url 'group' %}">
+         <i class='bx bxs-group' ></i>
+         <span class="links_name">Grupo</span>
+       </a>
+       <span class="tooltip">Grupo</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Ajustes</span>
+       </a>
+       <span class="tooltip">Ajustes</span>
+     </li>
+     <li class="profile">
+         <div class="profile-details">
+           <img src="{% static 'unal.png' %}" alt="profileImg">
+           <div class="name_job">
+             <div class="name">Joaquin & Efren</div>
+             <div class="job">Grupo de investigación</div>
+           </div>
+         </div>
+         <i class='bx bx-log-out' id="log_out" ></i>
+     </li>
+    </ul>
+  </div>
+  <section class="home-section">
+      <div class="text">Integrantes Grupo de Investigación</div>
+      <div class="Joaquin">
+      	<img src="{% static 'joaquin.jpg'%}" class="guille">
+      	<p class="textog">
+      		Doctorado en Ciencias Agrarias – Biomodelation. Universidad Nacional de Colombia - The University of Kansas.
+      		<br>
+			Magíster en Ciencias Agrarias - Área Fitoepidemiología. Universidad Nacional de Colombia
+			<br>
+			Pregrado en Ingeniería Agronómica. Universidad Nacional de Colombia
+		</p>
+      </div>
+      <div class="Jesus">
+      	<img src="{% static 'jesus.jpg'%}" class="efren">
+      	<p class="textoe">
+      		Postdoctorado en Ciencias de la Atmósfera, Universidad Nacional Autónoma de México.
+      		<br>
+      		Doctorado en Ciencias de la Tierra, Universidad Nacional Autónoma de México.
+      		<br>
+      		Magíster en Medio Ambiente y Desarrollo, Universidad Nacional de Colombia.
+      		<br>
+			Especialización en Gestión Ambiental, Universidad Nacional de Colombia
+			<br>
+			Pregrado en Ingeniería Forestal, Universidad Nacional de Colombia, sede Medellín.
+		</p>
+      </div>
+  </section>
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+
+    closeBtn.addEventListener("click", ()=>{
+      sidebar.classList.toggle("open");
+      menuBtnChange();//calling the function(optional)
+    });
+
+    searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+      sidebar.classList.toggle("open");
+      menuBtnChange(); //calling the function(optional)
+    });
+
+    // following are the code to change sidebar button(optional)
+    function menuBtnChange() {
+     if(sidebar.classList.contains("open")){
+       closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+     }else {
+       closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+     }
+    }
+  </script>
+</body>
+</html>
