@@ -241,7 +241,7 @@
   color: #0A0B0B;
   font-size: 35px;
   font-weight: 500;
-  margin: 0px;
+  margin: 18px
 }
 @media (max-width: 420px) {
   .sidebar li .tooltip{
