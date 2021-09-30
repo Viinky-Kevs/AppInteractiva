@@ -10,7 +10,14 @@ from django.core.files.storage import FileSystemStorage
 
 import folium
 import ee
-ee.Initialize()
+
+def auth(request):
+    context = {}
+    authe = ee.Authenticate()
+    initial = ee.Initialize()
+    context['initial'] = initial
+    context['auth'] = authe
+    return render(request, 'AppWeb/auth.html', context)
 
 
 class home(TemplateView):
