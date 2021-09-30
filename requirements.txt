@@ -6,7 +6,6 @@ earthengine-api==0.1.279
 folium==0.12.1
 geehydro==0.2.0
 geetools==0.6.11
-gmpy2==2.0.8
 google-api-core==1.31.2
 google-api-python-client==1.12.8
 google-auth==1.35.0
