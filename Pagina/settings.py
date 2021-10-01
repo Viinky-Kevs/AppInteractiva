@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-q73duciu=4tla-^4hrjwpdtraj-7mq!0)l3wnbff)7=oul0)5^
 DEBUG = True
 
 ALLOWED_HOSTS = ['agrointeractivo.com']
-#'134.122.88.124', 
+#'64.227.111.219', 
 
 # Application definition
 
@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'Pagina.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django',
-        'USER': 'django',
-        'PASSWORD': '21fc2846ce365b67b565aaa631fdc64f',
+        'NAME': 'basededatos',
+        'USER': 'semillero',
+        'PASSWORD': 'semillero',
         'HOST': 'localhost',
         'PORT': '',
         }
