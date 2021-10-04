@@ -92,7 +92,7 @@ def register_user(request):
 def group(request):
     return render(request, 'AppWeb/group.html')
 
-@login_required
+@login_required(login_url='/accounts/login/')
 def upload(request):
     context = {}
     if request.method == 'POST':
