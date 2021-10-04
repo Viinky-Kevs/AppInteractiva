@@ -7,6 +7,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
 
 import folium
 import ee
@@ -91,6 +92,7 @@ def register_user(request):
 def group(request):
     return render(request, 'AppWeb/group.html')
 
+@login_required
 def upload(request):
     context = {}
     if request.method == 'POST':
