@@ -15,13 +15,13 @@ import ee
 def auth(request):
     context = {}
     authe = ee.Authenticate()
-    initial = ee.Initialize()
     context['initial'] = initial
     context['auth'] = authe
     return render(request, 'AppWeb/auth.html', context)
 
 
 class home(TemplateView):
+    ee.Initialize()
     template_name = 'AppWeb/map.html'
 
     # Define a method for displaying Earth Engine image tiles on a folium map.
