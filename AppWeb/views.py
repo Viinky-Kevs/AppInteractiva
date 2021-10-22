@@ -12,14 +12,6 @@ from django.contrib.auth.decorators import login_required
 import folium
 import ee
 
-def auth(request):
-    context = {}
-    authe = ee.Authenticate()
-    context['initial'] = initial
-    context['auth'] = authe
-    return render(request, 'AppWeb/auth.html', context)
-
-
 class home(TemplateView):
     ee.Initialize()
     template_name = 'AppWeb/map.html'
@@ -28,7 +20,7 @@ class home(TemplateView):
     def get_context_data(request):
         figure = folium.Figure()
         
-        m = folium.Map(location=[4, -65], zoom_start = 6)
+        m = folium.Map(location=[4, -77], zoom_start = 6)
 
         m.add_to(figure)
 
