@@ -1,145 +1,49 @@
+{% extends 'AppWeb/base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <title> VariabilidadCambio</title>
-  <link rel="stylesheet" href="{% static 'style_map.css' %}">
-  <!-- Boxicons.com Iconos (utilizar font)-->
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="icon" href="{% static 'icono2.ico' %}">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+{% block title %}Mapa interactivo{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style_map.css' %}">
+{% endblock %}
+
+{% block outher %}
   {{ map.header.render|safe }}
+{% endblock %}
 
-</head>
+{% block content %}
 
-<body>
-  <div class="sidebar">
-    <div class="logo-details">
-      <i class='bx bxs-meteor'></i>
-        <div class="logo_name">Interactive</div>
-        <i class='bx bx-menu' id="btn" ></i>
+<div class="container">
+  <h1 class="text">
+    Mapa Interactivo
+  </h1>
+  <div class="flex-container">
+    <div class="interactive">
+      {{ map.html.render|safe }}
     </div>
-    <ul class="nav-list">
-      <li>
-          <i class='bx bx-search' ></i>
-         <input type="text" placeholder="Buscar...">
-         <span class="tooltip">Buscar</span>
-      </li>
-      <li>
-        <a href="{% url 'home' %}">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">Inicio</span>
-        </a>
-         <span class="tooltip">Inicio</span>
-      </li>
-
-      {% if user.is_authenticated %}
-      <li>
-       <a href="{% url 'logout' %}">
-         <i class='bx bx-user' ></i>
-         <span class="links_name">{{ user.username }}</span>
-       </a>
-       <span class="tooltip">{{ user.username }}</span>
-     </li>
-     <li>
-       <a href="{% url 'map' %}">
-         <i class='bx bx-map'></i>
-         <span class="links_name">Mapa</span>
-       </a>
-       <span class="tooltip">Mapa</span>
-     </li>
-     {% else %}
-     <li>
-       <a href="{% url 'login' %}">
-         <i class='bx bx-user' ></i>
-         <span class="links_name">Iniciar Sesión</span>
-       </a>
-       <span class="tooltip">Iniciar Sesión</span>
-     </li>
-     {% endif %}
-
-     <li>
-       <a href="#">
-         <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Análisis</span>
-       </a>
-       <span class="tooltip">Análisis</span>
-     </li>
-     <li>
-       <a href="{% url 'upload' %}">
-         <i class='bx bx-folder' ></i>
-         <span class="links_name">Archivos</span>
-       </a>
-       <span class="tooltip">Archivos</span>
-     </li>
-     <li>
-       <a href="{% url 'group' %}">
-         <i class='bx bxs-group' ></i>
-         <span class="links_name">Semillero</span>
-       </a>
-       <span class="tooltip">Semillero</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Ajustes</span>
-       </a>
-       <span class="tooltip">Ajustes</span>
-     </li>
-     <li class="profile">
-         <div class="profile-details">
-           <img src="{% static 'unal.png' %}" alt="profileImg">
-           <div class="name_job">
-             <div class="name">Joaquin & Efren</div>
-             <div class="job">Grupo de investigación</div>
-           </div>
-         </div>
-         <a href="https://github.com/Viinky-Kevs/AppInteractiva">
-           <i class='bx bxl-github' id="log_out"></i>
-         </a>
-     </li>
-    </ul>
+    <div class="options">
+      <h3>
+        Configuración
+      </h3>
+      <form action="" method="POST">
+        {% csrf_token %}
+      
+        <label for="satelite">Escoge el proveedor:&ensp;</label>
+        <select name="satelite" id="">
+          <option value="Landsat">Landsat</option>
+          <option value="MODIS">MODIS</option>
+          <option value="Sentinel">Sentinel</option>
+        </select>
+        <button type="submit" class="buttonc">Opciones</button>
+      </form>
+    </div>
   </div>
   
-  <section class="map-section">
-    <div class="text">
-      Mapa Interactivo
-    </div>
-    <div class="interactivo">
-      {{ map.html.render|safe }} 
-    </div>
+</div>
 
-  </section>
-  
-    <!--{{ map.html.render|safe }} -->
-  
-    <script>
+{% endblock %}
 
-      {{ map.script.render|safe }}
-      
-      let sidebar = document.querySelector(".sidebar");
-      let closeBtn = document.querySelector("#btn");
-      let searchBtn = document.querySelector(".bx-search");
-
-      closeBtn.addEventListener("click", ()=>{
-        sidebar.classList.toggle("open");
-        menuBtnChange();
-      });
-
-      searchBtn.addEventListener("click", ()=>{
-        sidebar.classList.toggle("open");
-        menuBtnChange();
-      });
-
-      function menuBtnChange() {
-        if(sidebar.classList.contains("open")){
-          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-        }else {
-          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");
-         }
-      }
-      
-    </script>
-</body>
-</html>
+{% block javascript %}
+  <script type="text/javascript" src="{% static 'javascript/script_map.js' %}"></script>
+{% endblock %}
