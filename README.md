@@ -9,3 +9,4 @@ AgroInteractivo cuenta con visualizaciones en un mapa interactivo proporcionado 
 Earth Engine y la posibilidad de cargar archivos para su análisis y visualización
  
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
