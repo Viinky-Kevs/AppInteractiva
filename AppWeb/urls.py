@@ -10,7 +10,6 @@ urlpatterns = [
 	path('interactivemap/', views.home.as_view(), name = 'map'),
 	path('group/', views.group, name = 'group'),
 	path('upload/', views.upload, name = 'upload'),
-	path('auth/', views.auth, name = 'auth'),
 ]
 
 if settings.DEBUG:
