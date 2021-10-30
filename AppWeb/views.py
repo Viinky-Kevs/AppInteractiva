@@ -12,29 +12,30 @@ from django.contrib.auth.decorators import login_required
 import folium
 import ee
 
+## Módulo de mapa interactivo
 class home(TemplateView):
     ee.Initialize()
     template_name = 'AppWeb/map.html'
-
     
     def get_context_data(request):
+
         figure = folium.Figure()
         
-        m = folium.Map(location=[4, -77], zoom_start = 6)
+        worldmap = folium.Map(location=[4, -77], zoom_start = 6)
 
-        m.add_to(figure)
+        worldmap.add_to(figure)
 
         dataset = (ee.ImageCollection('MODIS/006/MOD13Q1')
                   .filter(ee.Filter.date('2019-07-01', '2019-11-30'))
                   .first())
-        modisndvi = dataset.select('NDVI')
+        selectdata = dataset.select('EVI')
  
         vis_paramsNDVI = {
             'min': 0,
             'max': 9000,
             'palette': [ 'FE8374', 'C0E5DE', '3A837C','034B48',]}
 
-        map_id_dict = ee.Image(modisndvi).getMapId(vis_paramsNDVI)
+        map_id_dict = ee.Image(selectdata).getMapId(vis_paramsNDVI)
        
         folium.raster_layers.TileLayer(
                     tiles = map_id_dict['tile_fetcher'].url_format,
@@ -42,17 +43,19 @@ class home(TemplateView):
                     name = 'NDVI',
                     overlay = True,
                     control = True
-                    ).add_to(m)
+                    ).add_to(worldmap)
 
-        m.add_child(folium.LayerControl())
+        worldmap.add_child(folium.LayerControl())
  
         figure.render()
 
         return {"map": figure}
 
+## Inicio de página
 def index(request):
-	return render(request, 'AppWeb/index.html')
+    return render(request, 'AppWeb/index.html')
 
+## Registro de usuario
 def register_user(request):
     data = { 'form': CustomUser()}
     if request.method == 'POST':
@@ -69,9 +72,11 @@ def register_user(request):
         data["form"] = formulario    
     return render(request, 'registration/registration.html',data)
 
+## Módulo de semillero
 def group(request):
     return render(request, 'AppWeb/group.html')
 
+## Módulo de cargar archivos
 @login_required(login_url='/accounts/login/')
 def upload(request):
     context = {}

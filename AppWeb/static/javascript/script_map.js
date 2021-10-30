@@ -1,0 +1,1 @@
+{{ map.script.render | safe }}

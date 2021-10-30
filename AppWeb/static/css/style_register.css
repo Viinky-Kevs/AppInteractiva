@@ -1,0 +1,30 @@
+
+.container {
+    position:relative;
+    width: 90vw;
+    height: 90vh;
+    margin: auto;
+}
+.container_1 {
+    position:absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+    width: 500px; 
+    height: 750px;
+    background-color: rgb(40, 199, 146);
+    text-align: center;
+    border-radius: 15px;
+}
+
+.title {
+    text-align: center;
+    font-size: 35px;
+}
+.image_u {
+    width: 150px;
+}
+
+.form {
+    display: block;
+    text-align: center;
+}

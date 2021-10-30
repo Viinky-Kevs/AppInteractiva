@@ -224,7 +224,6 @@
 }
 .home-section{
   position: relative;
-  background: #E4E9F7;
   min-height: 100vh;
   top: 0;
   left: 78px;
@@ -242,28 +241,6 @@
   font-size: 35px;
   font-weight: 500;
   margin: 18px
-}
-.home-section .guille {
-  display: block;
-  border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
-}
-.home-section .textog{
-  text-align: center;
-  font-size: 25px;
-}
-.home-section .efren {
-  display: block;
-  border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
-}
-.home-section .textoe{
-  text-align: center;
-  font-size: 25px;
 }
 @media (max-width: 420px) {
   .sidebar li .tooltip{
