@@ -8,10 +8,6 @@
 <link rel="stylesheet" href="{% static 'css/style_map.css' %}">
 {% endblock %}
 
-{% block outher %}
-  {{ map.header.render|safe }}
-{% endblock %}
-
 {% block content %}
 
 <div class="container">
@@ -41,9 +37,5 @@
   </div>
   
 </div>
-
-{% endblock %}
-
-{% block javascript %}
-  <script type="text/javascript" src="{% static 'javascript/script_map.js' %}"></script>
+<script> {{ map.script.render | safe }}</script>
 {% endblock %}

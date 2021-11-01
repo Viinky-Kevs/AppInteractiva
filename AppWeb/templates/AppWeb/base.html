@@ -12,9 +12,7 @@
     {% endblock %}
     <link rel="icon" href="{% static 'icons/icono2.ico' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {% block outher %}
-    {% endblock %}
+    {{ map.header.render|safe }}
 
 </head>
 
@@ -111,8 +109,6 @@
         {% endblock %}
     </section>
     <script type="text/javascript" src="{% static 'javascript/script.js' %}"></script>
-    {% block javascript %}
-    {% endblock %}
 </body>
 
 </html>
