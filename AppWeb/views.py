@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from os import listdir
 
 from .forms import CustomUser, SuplierForm, MODISForm
-from agrointeractivo.settings import MEDIA_ROOT
+from Pagina.settings import MEDIA_ROOT
 
 import folium
 import ee
@@ -41,13 +41,6 @@ def config(request):
 class home(TemplateView):
     ee.Initialize()
     template_name = 'AppWeb/map.html'
-    
-    def data_get(request, self, *args, **kwargs):
-        self.form = SuplierForm(request.POST or None)
-        return super().data_get(request, *args, **kwargs)
-
-    def get_context(self, *args, **kwargs):
-        return {'form': self.form}
     
     def get_context_data(request):
 
