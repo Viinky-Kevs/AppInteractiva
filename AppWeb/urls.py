@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from interactivo import views
+from AppWeb import views
 from django.conf import settings
 from django.conf.urls.static import static
 
