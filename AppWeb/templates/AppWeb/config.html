@@ -1,0 +1,40 @@
+{% extends 'AppWeb/base.html' %}
+
+{% load static %}
+
+{% block title %}Mapa interactivo{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style_config.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="title">
+        Configuración de visualización de capas
+    </h1>
+    <br>
+    <br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <br>
+                <br>
+                <div class="button_d">
+                    <button type="submit" class="buttonc">Opciones</button>
+                </div>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ MODIS }}
+                <br>
+                <br>
+                <div class="button_d">
+                    <button type="submit" class="buttonc">Opciones</button>
+                </div>
+            </form>
+            
+</div>       
+
+{% endblock %}

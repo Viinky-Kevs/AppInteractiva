@@ -11,31 +11,46 @@
 {% block content %}
 
 <div class="container">
-  <h1 class="text">
-    Mapa Interactivo
-  </h1>
-  <div class="flex-container">
-    <div class="interactive">
-      {{ map.html.render|safe }}
-    </div>
-    <div class="options">
-      <h3>
-        Configuración
-      </h3>
-      <form action="" method="POST">
-        {% csrf_token %}
-      
-        <label for="satelite">Escoge el proveedor:&ensp;</label>
-        <select name="satelite" id="">
-          <option value="Landsat">Landsat</option>
-          <option value="MODIS">MODIS</option>
-          <option value="Sentinel">Sentinel</option>
-        </select>
-        <button type="submit" class="buttonc">Opciones</button>
-      </form>
-    </div>
+  
+    {{ map.html.render|safe }}
+  
+  <div class="outher">
+    <h1 class="title">
+      Mapa Intercativo
+    </h1>
   </div>
   
+  <!--
+    <div class="options">
+      <h3 class="title_1">
+        Propiedas de la capa
+      </h3>
+      <br>
+      <br>
+      <table>
+        <tbody style="width: 100%;">
+          <tr>
+            <td>Proveedor</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Imagen</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <br>
+      <a href="{% url 'config' %}">
+        <button>
+          Configurar capa
+        </button>
+      </a>
+    </div>-->  
 </div>
 <script> {{ map.script.render | safe }}</script>
+
 {% endblock %}
+      

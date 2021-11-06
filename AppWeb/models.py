@@ -16,3 +16,10 @@ class archivo(models.Model):
 
 	def __str__(self):
 		return self.nombre
+
+class Theme(models.Model):
+	color = models.CharField(max_length = 50)
+	user = models.CharField(max_length = 10)
+
+	def __str__(self):
+		return self.nombre

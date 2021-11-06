@@ -6,6 +6,16 @@
   box-sizing: border-box;
   font-family: "Poppins" , sans-serif;
 }
+
+.home-section {
+  background-color: seashell;
+}
+
+.dark-mode .home-section {
+  background-color: #11101D;
+  color:rgba(62, 180, 161, 0.938);
+}
+
 .sidebar{
   position: fixed;
   left: 0;
@@ -242,6 +252,21 @@
   font-weight: 500;
   margin: 18px
 }
+
+.theme {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  left: 50%;
+  width: 150px;
+}
+
+.boton {
+  width: 150px;
+  border-radius: 15px;
+
+}
+
 @media (max-width: 420px) {
   .sidebar li .tooltip{
     display: none;

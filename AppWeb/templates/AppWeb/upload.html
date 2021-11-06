@@ -1,39 +1,88 @@
 {% extends 'AppWeb/base.html' %}
 
-{% block title %}subir-archivos{% endblock %}
+{% load static %}
+
+{% block title %}Subir archivos{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style_upload.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="text">
-  Manejo de archivos
-</div>
-<div class="formulario_archivo">
-  <form method="POST" enctype="multipart/form-data" class="upload">
-    {% csrf_token %}
-    <div class="file">
-      <input type="file" name="Archivo">
+<div class="container">
+  <h1 class="title">
+    Subir archivos
+  </h1>
+  <br>
+  <br>
+  <div class='some-page-wrapper'>
+    <div class='row'>
+      <div class='column'>
+        <div class='blue-column'>
+          <div class="container_1">
+            <br>
+            <h1>
+              Selecciona el archivo
+            </h1>
+            <br>
+            <form method="POST" enctype="multipart/form-data" class="upload">
+              {% csrf_token %}
+              <div class="file">
+                <input type="file" name="Archivo"
+                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                  required>
+              </div>
+              <br>
+              <div class="submit">
+                <button type="submit">
+                  Subir archivo
+                </button>
+              </div>
+          
+            </form>
+            <br>
+            <br>
+            {% if name %}
+            <h1>
+              Archivo subido exitosamente!
+            </h1>
+            <p>
+              Nombre archivo:&emsp;&emsp;{{ name }}
+            </p>
+            {% endif %}
+            {% if size %}
+            <p>
+              Tamaño archivo: &emsp;&emsp; {{ size }} bites
+            </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class='column'>
+        <div class='green-column'>
+          <table style="width: 100%;" class="tabla">
+            <thead>
+              <tr>
+                <th>Nombre archivo</th>
+                <th>Tipo de archivo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in files %}
+              <tr>
+                <td>{{ i }}</td>
+                {% if "xlsx" in i %}
+                <td>Excel</td>
+                {% elif "csv" in i %}
+                <td>Delimitado por comas</td>
+                {% endif %} 
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table> 
+        </div>
+      </div>
     </div>
-    <div class="submit">
-      <button type="submit">
-        Subir archivo
-      </button>
-    </div>
-    
-  </form>
-      {% if name %}
-    <p>
-      Nombre archivo: 
-      <a href="{{ name }}">
-      {{ name }}
-      </a>
-    </p>
-    {% endif %}
-    {% if size %}
-    <p>
-      Tamaño archivo: 
-      <a href="{{ size }}">
-      {{ size }}
-      </a>
-    </p>
-    {% endif %}
+  </div>
 </div>
 {% endblock %}

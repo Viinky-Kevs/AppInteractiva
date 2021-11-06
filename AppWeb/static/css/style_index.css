@@ -58,6 +58,10 @@
     font-size: 20px;
 }
 
+.dark-mode .column2{
+	color: black;
+}
+
 .slider{
 	position: relative;
 	width: 1200px;

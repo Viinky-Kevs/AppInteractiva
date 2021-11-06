@@ -5,7 +5,7 @@
 <head>
     <!--<meta charset="UTF-8">-->
     <title> {% block title %} {% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style_base.css' %}">
+    <link id = "mystylesheet" rel="stylesheet" href="{% static 'css/style_base.css' %}">
     <!-- Boxicons.com Iconos (utilizar font)-->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     {% block style %} 
@@ -13,7 +13,7 @@
     <link rel="icon" href="{% static 'icons/icono2.ico' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ map.header.render|safe }}
-
+    
 </head>
 
 <body>
@@ -61,7 +61,7 @@
                 <span class="tooltip">Iniciar Sesión</span>
             </li>
             {% endif %}
-
+            
             <li>
                 <a href="#">
                     <i class='bx bx-pie-chart-alt-2'></i>
@@ -84,11 +84,11 @@
                 <span class="tooltip">Semillero</span>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Ajustes</span>
+                <a href="javascript:myFunction()">
+                    <i class='bx bx-color-fill'></i>
+                    <span class="links_name">Tema</span>
                 </a>
-                <span class="tooltip">Ajustes</span>
+                <span class="tooltip">Tema</span>
             </li>
             <li class="profile">
                 <div class="profile-details">
@@ -98,7 +98,7 @@
                         <div class="job">Grupo de investigación</div>
                     </div>
                 </div>
-                <a href="https://github.com/Viinky-Kevs/AppInteractiva">
+                <a href="https://github.com/Viinky-Kevs/AppInteractiva" target="_blank">
                     <i class='bx bxl-github' id="log_out"></i>
                 </a>
             </li>
@@ -108,6 +108,8 @@
         {% block content %}
         {% endblock %}
     </section>
+    
+    <script type="text/javascript" src="{% static 'javascript/script_theme.js' %}"></script>
     <script type="text/javascript" src="{% static 'javascript/script.js' %}"></script>
     {% block javascript %}
     {% endblock %}

@@ -1,39 +1,71 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
-from .forms import CustomUser, FileFieldForm
-from folium import plugins
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 
+from os import listdir
+
+from .forms import CustomUser, SuplierForm, MODISForm
+from agrointeractivo.settings import MEDIA_ROOT
+
 import folium
 import ee
 
+def config(request):
+    data = {}
+    form = SuplierForm()
+
+    if request.method == 'POST':
+        formulario = SuplierForm(data = request.POST)
+        if formulario.is_valid():
+            reason = formulario.cleaned_data['Proveedor']
+            reason = dict(formulario.fields['Proveedor'].choices)[reason]
+            
+            if reason == "MODIS":
+                data = {}
+                form = MODISForm()
+                data['MODIS'] = form
+                data['form'] = "MODIS"
+                return render(request, 'AppWeb/config.html', data)
+            else:
+                data['MODIS'] = reason
+                return render(request, 'AppWeb/config.html', data)
+    data["form"] = form
+    return render(request, 'AppWeb/config.html', data)
+
+
 ## Módulo de mapa interactivo
+
 class home(TemplateView):
     ee.Initialize()
     template_name = 'AppWeb/map.html'
+    
+    def data_get(request, self, *args, **kwargs):
+        self.form = SuplierForm(request.POST or None)
+        return super().data_get(request, *args, **kwargs)
+
+    def get_context(self, *args, **kwargs):
+        return {'form': self.form}
     
     def get_context_data(request):
 
         figure = folium.Figure()
         
-        worldmap = folium.Map(location=[4, -77], zoom_start = 6)
+        worldmap = folium.Map(location=[4, -76.7], zoom_start = 6)
 
         worldmap.add_to(figure)
 
         dataset = (ee.ImageCollection('MODIS/006/MOD13Q1')
                   .filter(ee.Filter.date('2019-07-01', '2019-11-30'))
                   .first())
-        selectdata = dataset.select('EVI')
+        selectdata = dataset.select('NDVI')
  
         vis_paramsNDVI = {
             'min': 0,
             'max': 9000,
-            'palette': [ 'FE8374', 'C0E5DE', '3A837C','034B48',]}
+            'palette': [ 'FE8374', 'C0E5DE', '3A837C','034B48']}
 
         map_id_dict = ee.Image(selectdata).getMapId(vis_paramsNDVI)
        
@@ -53,7 +85,7 @@ class home(TemplateView):
 
 ## Inicio de página
 def index(request):
-    return render(request, 'AppWeb/index.html')
+	return render(request, 'AppWeb/index.html')
 
 ## Registro de usuario
 def register_user(request):
@@ -88,4 +120,8 @@ def upload(request):
         size = upload_file.size
         context['name'] = name
         context['size'] = size
+    
+    context['files'] = listdir(MEDIA_ROOT)
+
     return render(request, 'AppWeb/upload.html', context)
+

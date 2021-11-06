@@ -1,0 +1,34 @@
+.title {
+    text-align: center;
+    font-size: 35px;
+}
+
+img {
+    width: 350px;
+    border-radius: 15px;
+    min-width: 250px;
+    min-height: 250px;
+}
+
+.container-s {
+    position: absolute;
+    left: 150px;
+}
+
+.joaquin,
+.jesus {
+    background-color: rgb(54, 179, 137);
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 15px;
+}
+
+p {
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+.dark-mode p{
+    color: black;
+}

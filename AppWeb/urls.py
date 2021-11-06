@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from AppWeb import views
+from interactivo import views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -10,6 +10,7 @@ urlpatterns = [
 	path('interactivemap/', views.home.as_view(), name = 'map'),
 	path('group/', views.group, name = 'group'),
 	path('upload/', views.upload, name = 'upload'),
+	path('interactivemap/configuration/', views.config, name = 'config'),
 ]
 
 if settings.DEBUG:

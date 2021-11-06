@@ -2,31 +2,24 @@
     text-align: center;
     font-size: 35px;
 }
+/*
+.title_1 {
+  text-align: center;
+}*/
 
-.flex-container {
-  display: flex;
-  flex-direction: row;
+.container {
+  display: inline-block;
+  width: max-content;
+  height: 900px;
 }
 
 .interactive {
-  width: 75%;
-  height: 100vh;
-  margin: 5px;
-  padding: 5px;
+  display: block;
+  width: max-content;
+  height: 900px;
 }
 
-.options {
-  width: 25%;
-  margin: 5px;
-  padding: 5px;
-}
-
-.buttonc {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    background-color: rgb(32, 173, 173);
-    color: white;
-    border-radius: 10px;
-}
+/*
+table, th, td {
+  border:1px solid black;
+}*/
