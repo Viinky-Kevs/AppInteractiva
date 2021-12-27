@@ -8,6 +8,10 @@ img {
     border-radius: 15px;
     min-width: 250px;
     min-height: 250px;
+    padding: 5px;
+}
+.jesus1 {
+    width: 27%;
 }
 
 .container-s {
@@ -24,9 +28,10 @@ img {
     border-radius: 15px;
 }
 
-p {
-    margin-top: 50px;
-    font-size: 20px;
+li, ul {
+    font-size: 18px;
+    margin: 0 2.5%;
+    margin-top: 5px;
 }
 
 .dark-mode p{

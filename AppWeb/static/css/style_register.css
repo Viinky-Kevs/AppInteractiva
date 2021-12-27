@@ -28,3 +28,8 @@
     display: block;
     text-align: center;
 }
+@media only screen and (max-width: 1000px){
+    .container {
+        margin-top: 50px;
+    }
+}

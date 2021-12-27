@@ -21,18 +21,25 @@
                 {{ form }}
                 <br>
                 <br>
+                {% if MODIS %}
+
+                {% else %}
                 <div class="button_d">
                     <button type="submit" class="buttonc">Opciones</button>
                 </div>
+                {% endif %}
             </form>
             <form action="" method="POST">
                 {% csrf_token %}
                 {{ MODIS }}
                 <br>
                 <br>
+                {% if MODIS %}
                 <div class="button_d">
                     <button type="submit" class="buttonc">Opciones</button>
                 </div>
+                {% else %}
+                {% endif %}
             </form>
             
 </div>       
