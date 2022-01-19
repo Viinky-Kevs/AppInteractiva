@@ -11,6 +11,7 @@ urlpatterns = [
 	path('group/', views.group, name = 'group'),
 	path('upload/', views.upload, name = 'upload'),
 	path('interactivemap/configuration/', views.config, name = 'config'),
+	path('analysis/', views.analysis, name='analysis'),
 ]
 
 if settings.DEBUG:

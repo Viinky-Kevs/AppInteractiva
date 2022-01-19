@@ -29,7 +29,7 @@
       </h3>
       <br>
       <h3>
-        Imágen: &emsp;&emsp; {{ imagen }}
+        Imágen: &emsp;&emsp; {{ band_name }}
       </h3>
       <br>
       <h3>
@@ -46,56 +46,6 @@
     </div>
   </section>
 </div>
-
-
-<!--
-<div class="container">
-  <div class='some-page-wrapper'>
-    <div class='row'>
-      <div class='column'>
-        <div class='blue-column'>
-          {{ map.html.render|safe }}
-        </div>
-      </div>
-  
-      <div class='column'>
-        <div class='green-column'>
-          <div class="container_1">
-            <h1 class="title">
-              Mapa Interactivo
-            </h1>
-            <br>
-            <br>
-            <h3>
-              Proveedor: &emsp;&emsp; {{ proveedor }}
-            </h3>
-            <br>
-            <h3>
-              Producto: &emsp; {{ producto }}
-            </h3>
-            <br>
-            <h3>
-              Imágen: &emsp;&emsp; {{ imagen }}
-            </h3>
-            <br>
-            <h3>
-              Intervalo de tiempo:<br>
-              {{ fecha_i }}<br> {{ fecha_f }}
-            </h3>
-            <br>
-            <br>
-            <a href="{% url 'config' %}">
-              <button class="boton">
-                Configurar capa
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
 <script> {{ map.script.render | safe }}</script>
 
 {% endblock %}

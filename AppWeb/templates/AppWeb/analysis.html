@@ -1,0 +1,108 @@
+{% extends 'AppWeb/base.html' %}
+
+{% load static %}
+
+{% block title %}Análisis{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style_analysis.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <h1 class='title'>
+        Análisis geoestadístico
+    </h1>
+    <br>
+    <br>
+    <div class="form">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if form%}
+            {{ form }}
+            <br>
+            <div>
+                <input type="submit" value="Seleccionar">
+            </div>
+            {% else %}
+            <input type="submit" value="Volver a seleccionar">
+            {% endif %}
+        </form>
+    </div>
+    <br>
+    <br>
+    <div>
+        <h1 class="title_2">
+            Previsualización del archivo
+        </h1>
+        <br>
+        <table style="width:90%">
+            <thead>
+                <tr>
+                    {% for name in table %}
+                    <th>
+                        {{ name }}
+                    </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            {% for f in content %}
+            <tr>
+                {% for j in f %}
+                    <td>{{ j }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <br>
+    <div>
+        <h1 class="title_2">
+            Estadística descriptiva
+        </h1> 
+        <br>
+        <table style="width:90%">
+            <thead>
+                <tr>
+                    {% for i in statistics %}
+                    <th>{{ i }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            {% for f in lista %}
+            <tr>
+                {% for j in f %}
+                    <td>{{ j }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <br>
+    <div>
+        <h1 class="title_2">
+            Gráficas
+        </h1>
+        <br>
+        <br>
+        <div class="container_2">
+            <h3 class="title_2">
+                Elige que variable deseas analizar
+            </h3>
+            <br>
+            <div class="variable2">
+                <label for="variable">Selecciona</label>
+                <select name="" id="variable">
+                    {% for name in table %}
+                        <option value="{{ name }}">{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
