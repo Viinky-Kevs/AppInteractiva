@@ -1,10 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms.fields import ChoiceField
-from django.views.generic import TemplateView, FormView
 
-
+import glob
+from django.forms.forms import Form
+import pandas
 
 class CustomUser(UserCreationForm):
 	
@@ -53,3 +53,33 @@ MODIS = [("MODIS/006/MCD43A4","Reflectancia ajustada diaria (500m)"),
 
 class MODISForm(forms.Form):
     Colecciones_de_MODIS = forms.ChoiceField(choices = MODIS)
+
+MCD43A4 = [('Nadir_Reflectance_Band1','Banda 1'),
+            ('Nadir_Reflectance_Band2','Banda 2'),
+            ('Nadir_Reflectance_Band3','Banda 3'),
+            ('Nadir_Reflectance_Band4','Banda 4'),
+            ('Nadir_Reflectance_Band5','Banda 5'),
+            ('Nadir_Reflectance_Band6','Banda 6'),
+            ('Nadir_Reflectance_Band7','Banda 7'),
+            ('BRDF_Albedo_Band_Mandatory_Quality_Band1', 'BRDF banda 1'),
+            ('BRDF_Albedo_Band_Mandatory_Quality_Band2', 'BRDF banda 2'),
+            ('BRDF_Albedo_Band_Mandatory_Quality_Band3', 'BRDF banda 3'),
+            ('BRDF_Albedo_Band_Mandatory_Quality_Band4', 'BRDF banda 4'),
+            ('BRDF_Albedo_Band_Mandatory_Quality_Band5', 'BRDF banda 5'),
+            ('BRDF_Albedo_Band_Mandatory_Quality_Band6', 'BRDF banda 6'),
+            ('BRDF_Albedo_Band_Mandatory_Quality_Band7', 'BRDF banda 7')
+            ]
+
+class MCD43A4Form(forms.Form):
+    bandas = forms.ChoiceField(choices = MCD43A4)
+
+files = glob.glob('./media/*')
+options = []
+for i in files:
+    dir_f = i
+    a = dir_f.split('/')
+    b = a[2].split('.')
+    options.append((b[0],a[2]))
+
+class FilesAnalysis(forms.Form):
+    files_n = forms.ChoiceField(choices = options, label = "Archivos disponibles")
